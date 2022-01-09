@@ -25,7 +25,7 @@
                     <input type="submit" name="search" value="Search">
                 </form>
             </div>
-            
+
             <div class="cart">
                 <ul>
                     <li class="dropdown_header_cart">
@@ -34,7 +34,13 @@
                         </div>
                     </li>
                 </ul>
-            </div>    
+            </div>
+            
+            <div class="register_login">
+                <div class="login"><a href="index.php?action=login">Login</a></div>
+                <div class="register"><a href="customer_register.php">Register</a></div>
+            </div>
+
         </div><!--Header Wrapper-->
 
         <div class="content_wrapper">
