@@ -25,7 +25,10 @@ time, mark, audio, video {
 }
 /* Reset Code */
 
-.main_wrapper {
+
+
+
+.main_wrapper{
     width: 1000px;
     height: auto;
     margin:auto;
@@ -41,17 +44,104 @@ time, mark, audio, video {
 
 .header_logo{
     float:left;
-    width: 150px;
-    padding: 10px;
+    /* width: 150px; */
+    /* padding: 10px; */
 }
 
-#form {
+.header_logo img {
+    width: 100px;
+}
+
+.header_logo a {
+    margin: 0;
+    padding: 0;
+}
+
+.menubar{
+    width: 1000px;
+    height: 50px;
+    background: #0c5f66;
+    
+}
+
+.menubar a {
+    color : #fff;
+}
+
+#sidebar{
+    width: 200px;
+    background: rgba(105, 105, 105, 0.9);
+    float: left;
+    height: auto;
+}
+
+#sidebar_title{
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+    font-size: 22px;
+    font-family: arial;
+    padding : 10px;
+    text-align: center;
+}
+
+#cats {
+    text-align: center;
+}
+
+#cats li {
+    list-style: none;
+    margin: 5px;
+}
+
+#cats a {
+    color: #fff;
+    padding: 8px;
+    margin: 5px;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#cats a:hover{
+    color: rgb(255, 102, 1);
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+#menu {
+    padding : 0;
+    margin: 0;
+    line-height: 40px;
+    float: left;
+}
+
+#menu li {
+    list-style: none;
+    display: inline;
+}
+
+#menu a {
+    text-decoration: none;
+    padding: 8px;
+    margin: 5px;
+    font-size: 18px;
+}
+
+#menu a:hover {
+    color :rgb(255, 102, 1);
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+
+#form{
     float: left;
     width: 45%;
     margin-top: 10px;
 }
 
-#form input {
+#form input{
     padding: 8px;
 }
 
@@ -59,7 +149,8 @@ time, mark, audio, video {
     width: 80%;
 }
 
-.cart {
+
+.cart{
 
     float: left;
     margin: 5px 10px 0px 15px;
@@ -135,6 +226,7 @@ time, mark, audio, video {
 .cart img {
     width: 30px;
 }
+
 
 .content_wrapper{
     width: 1000px;

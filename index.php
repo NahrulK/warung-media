@@ -1,3 +1,7 @@
+<?php
+include ("includes/db.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +17,10 @@
 <div class="main_wrapper">
 
        <div class="header_wrapper">
+
             <div class="header_logo">
                 <a href="index.php">
-                    <img id="logo" src="images/icon-logo.png" width="100px">
+                    <img id="logo" src="images/icon-logo.png" >
                 </a>
             </div> <!--Header Logo-->
 
@@ -43,8 +48,59 @@
 
         </div><!--Header Wrapper-->
 
+        <div class="menubar">
+            <ul id="menu">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="all_services.php">All Services</a></li>
+                <li><a href="customer/my_account.php">My Account</a></li>
+                <li><a href="cart.php">Shopping Cart</a></li>
+                <li><a href="contact.php">Contact Us</a></li>
+            </ul>
+        </div>
+
         <div class="content_wrapper">
-            Content Wrapper
+           <div id="sidebar">
+
+               <div id="sidebar_title">Kategori</div>
+               <ul id="cats">
+                <?php
+                
+                $get_cats = "select * from categories";
+                $run_cats = mysqli_query($con, $get_cats);
+
+                while($row_cats=mysqli_fetch_array($run_cats)) {
+
+                    $cat_id = $row_cats['cat_id'];
+                    $cat_title = $row_cats['cat_title'];
+                    
+                    echo "<li><a href='index.php?cat=$cat_id'>$cat_title</a></li>";
+                };
+                
+                ?>
+
+               </ul>
+
+                <div id="sidebar_title">Partner</div>
+                <ul id="cats">
+                   
+                <?php
+                
+                $get_brands = "select * from partner";
+                $run_brands = mysqli_query($con, $get_brands);
+
+                while($row_brands=mysqli_fetch_array($run_brands)) {
+
+                    $brand_id = $row_brands['brand_id'];
+                    $brand_title = $row_brands['brand_title'];
+                    
+                    echo "<li><a href='index.php?brand=$brand_id'>$brand_title</a></li>";
+                };
+                
+                ?>
+
+                </ul>
+           </div>
+
         </div><!--Content Wrapper-->
             
     <div id="footer">
