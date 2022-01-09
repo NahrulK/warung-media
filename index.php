@@ -1,4 +1,5 @@
 <?php
+include ("functions/functions.php");
 include ("includes/db.php");
 ?>
 
@@ -64,18 +65,7 @@ include ("includes/db.php");
                <div id="sidebar_title">Kategori</div>
                <ul id="cats">
                 <?php
-                
-                $get_cats = "select * from categories";
-                $run_cats = mysqli_query($con, $get_cats);
-
-                while($row_cats=mysqli_fetch_array($run_cats)) {
-
-                    $cat_id = $row_cats['cat_id'];
-                    $cat_title = $row_cats['cat_title'];
-                    
-                    echo "<li><a href='index.php?cat=$cat_id'>$cat_title</a></li>";
-                };
-                
+                    getCats();                               
                 ?>
 
                </ul>
@@ -84,18 +74,7 @@ include ("includes/db.php");
                 <ul id="cats">
                    
                 <?php
-                
-                $get_brands = "select * from partner";
-                $run_brands = mysqli_query($con, $get_brands);
-
-                while($row_brands=mysqli_fetch_array($run_brands)) {
-
-                    $brand_id = $row_brands['brand_id'];
-                    $brand_title = $row_brands['brand_title'];
-                    
-                    echo "<li><a href='index.php?brand=$brand_id'>$brand_title</a></li>";
-                };
-                
+                    getPartner();
                 ?>
 
                 </ul>
@@ -104,7 +83,7 @@ include ("includes/db.php");
         </div><!--Content Wrapper-->
             
     <div id="footer">
-    This is Footer
+    <h2 style="text-align : center; padding-top: 30px;">&copy; 2022 - <?php echo date("Y");?> by @nahrul.k</h2>
     </div><!--End Footer-->
 </div><!-- End Main Wrapper-->
 <!-- End Main Container -->
