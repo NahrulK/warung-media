@@ -175,6 +175,16 @@ time, mark, audio, video {
     z-index: 1;
 }
 
+.cart .shopping-cart .noti-cart-number{
+    background: #7e7204;
+    color: #fff;
+    position: absolute;
+    top: -5px;
+    left: 25px;
+    padding: 1px 3px 1px 3px;
+    border-radius: 50%;
+}
+
 .register_login {
     float: left;
     width: 150px;

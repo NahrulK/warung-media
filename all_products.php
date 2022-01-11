@@ -1,6 +1,6 @@
 <?php
 include ('includes/header.php');
-?>
+?> <!-- Header -->
         <div class="menubar">
             <ul id="menu">
                 <li><a href="index.php">Home</a></li>
@@ -9,7 +9,7 @@ include ('includes/header.php');
                 <li><a href="cart.php">Shopping Cart</a></li>
                 <li><a href="contact.php">Contact Us</a></li>
             </ul>
-        </div>
+            </div> <!-- Menu Bar end -->
 
         <div class="content_wrapper">
             <div id="sidebar">
@@ -30,22 +30,42 @@ include ('includes/header.php');
                 ?>
 
                 </ul>
-           </div>
+           </div> <!-- Sidebar -->
 
            <div id="content_area">
-
-
-                <?php
-                
-                cart();
-
-                ?>
-
                <div id="product_box">
 
                 
                 <?php
-                getPro()
+                
+                $get_pro = "SELECT * from product ";
+                $run_pro = mysqli_query($con, $get_pro);
+
+                while($row_pro = mysqli_fetch_array($run_pro)) {
+
+                    $pro_id = $row_pro['product_id'];
+                    $pro_cat = $row_pro['product_cat'];
+                    $pro_brand = $row_pro['product_brand'];
+                    $pro_title = $row_pro['product_title'];
+                    $pro_price = $row_pro['product_price'];
+                    $pro_image = $row_pro['product_image'];
+
+                    echo "
+                    <div id='single_product'>
+                        <h3>$pro_title</h3>
+                        <img src='admin_area/product_images/$pro_image' width='180' height='180'>
+                        <p><b>Price : $pro_price</b></p>
+                        <a href='details.php?pro_id=$pro_id'>Details</a>
+                        <a href='index.php?add_cart=$pro_id'>
+                            <button style='float:right'> Add to Chart</button>
+                        </a>
+                    </div>
+                    ";
+
+
+                }
+                
+
                 ?>
                             
                 <?php
@@ -57,8 +77,7 @@ include ('includes/header.php');
                 ?> <!--Sort berdasarkan brand-->
                                
                </div>
-           </div>
-
+           </div> <!-- Content Area -->
         </div><!--Content Wrapper-->
             
     <?php
