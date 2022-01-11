@@ -234,6 +234,30 @@ time, mark, audio, video {
     background: rgb(255, 102, 1);
 }
 
+#content_area {
+    width: 800px;
+    float: right;
+    background: #fff5ee;
+
+}
+
+#product_box {
+   width: 780px;
+   text-align: center;
+   margin-left: 30px;
+   margin-bottom: 10px; 
+}
+
+#single_product {
+    float: left;
+    margin-left: 30px;
+    padding: 10px;
+}
+
+#single_product img {
+    border: 2px solid #000;
+}
+
 #footer {
     width: 1000px;
     height: 100px;
