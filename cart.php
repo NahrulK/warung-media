@@ -122,7 +122,7 @@ include ('includes/header.php');
 
                 // Getting quality produduct
 
-                $run_qty = mysqli_query($con, "SELECT * from cart where product_id='$product_id'");
+                $run_qty = mysqli_query($con, "SELECT * from cart where product_id='$product_id' AND ip_address='$ip'");
 
                 $row_qty = mysqli_fetch_array($run_qty);
 
