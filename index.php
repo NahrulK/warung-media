@@ -44,19 +44,18 @@ include ('includes/header.php');
 
                <div id="product_box">
 
-                
-                <?php
-                getPro()
-                ?>
-                            
-                <?php
-                getProByCat();                                
-                ?> <!--Sort berdasarkan category-->
 
-                <?php
-                getProByBrand();                       
-                ?> <!--Sort berdasarkan brand-->
+               <?php if(!isset($_GET['action'])) { ?>
+                
+                <?php getPro() ?>     
+                <?php getProByCat(); ?> <!--Sort berdasarkan category-->
+                <?php getProByBrand(); ?> <!--Sort berdasarkan brand-->
                                
+                <?php }else { ?>
+
+                    <?php include('login.php'); ?>
+
+                <?php } ?>
                </div>
            </div>
 

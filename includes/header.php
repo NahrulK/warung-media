@@ -55,7 +55,7 @@ include ("includes/db.php");
             
             <div class="register_login">
                 <div class="login"><a href="index.php?action=login">Login</a></div>
-                <div class="register"><a href="customer_register.php">Register</a></div>
+                <div class="register"><a href="register.php">Register</a></div>
             </div>
 
         </div><!--Header Wrapper-->

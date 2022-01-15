@@ -34,7 +34,7 @@
         <td colspan="4">
             <h2>Login</h2><br>
             <span>
-                Dont have account? <a href="customer_register.php">Register Here</a><br><br>
+                Dont have account? <a href="register.php">Register Here</a><br><br>
             </span>
         </td>
     </tr>
