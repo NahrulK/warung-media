@@ -13,6 +13,7 @@ include ("includes/db.php");
     <title>Warung Media</title>
 
     <link rel="stylesheet" href="styles/style.css" media="all">
+    <script src="js/jquery.js"></script>
 </head>
 <body>
 <!--  Main Container -->

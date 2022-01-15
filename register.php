@@ -1,3 +1,40 @@
+<style>
+
+.register_box {
+    width: 100%;
+    height: 100px;
+    background: #fff;
+    padding: 15px;
+}
+
+.register_box input[type=text],
+.register_box input[type=password] {
+    width: 60%;
+    padding: 3px 10px;
+    margin: 5px 0;
+}
+
+.register_box input[type=submit]{
+    padding : 10px 15px;
+    background :#f3f3f3;
+    border: 0.01px solid;
+}
+
+.register_box select {
+
+    width: 40%;
+    padding: 3px 10px;
+    margin: 5px 0px;
+
+}
+
+.register_box input[input=file]{
+    margin: 5px;
+}
+
+</style>
+
+
 <?php
 include ('includes/header.php');
 ?>
@@ -13,6 +50,29 @@ include ('includes/header.php');
         </div>
 
         <div class="content_wrapper">
+
+        <script>
+
+        $(document).ready(function(){
+
+           $("#password_confirm2").on('keyup',function(){
+
+
+           let password_confirm1 = $("#password_confirm1").val();
+           let password_confirm2 = $("#password_confirm2").val();
+
+        //    alert(password_confirm2);
+
+        if (password_confirm1 == password_confirm2) {
+            $("#status_for_confirm_password").html('<strong style="color: green;">Password Sama</strong>');
+        }else {
+            $("#status_for_confirm_password").html('<strong style="color: red;">Password tidak sama..</strong>');
+        }
+
+           });
+        });
+
+        </script>
            
         <div class="register_box">
 
@@ -30,8 +90,8 @@ include ('includes/header.php');
     </tr>
 
     <tr>
-        <td width="15%"><b>Email :</b></td>
-        <td colspan="3"><input type="text" name="email" placeholder="Name here.."></td>
+        <td width="15%"><b>Name :</b></td>
+        <td colspan="3"><input type="text" name="name" placeholder="Name here.."></td>
     </tr>
     
     <tr>
@@ -41,7 +101,16 @@ include ('includes/header.php');
 
     <tr>
         <td width="15%"><b>Password :</b></td>
-        <td colspan="3"><input type="password" name="password" placeholder="Password"></td>
+        <td colspan="3"><input type="password" name="password" placeholder="Password" id="password_confirm1"></td>
+    </tr>
+
+    <tr>
+        <td width="15%"><b>Confirm Password :</b></td>
+        <td colspan="3"><input type="password" name="confirm_password" placeholder="Confirm Password" id="password_confirm2">
+            <p id="status_for_confirm_password">
+
+            </p> <!--Menampilkan Validasi Password-->
+        </td>
     </tr>
 
     <tr>
