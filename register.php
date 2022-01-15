@@ -158,41 +158,46 @@ include ('includes/header.php');
 
 <?php
 
-if(isset($_POST['login'])){
+if(isset($_POST['register'])){
 
-    $email = $_POST['email'];
-    $password = $_POST [ 'password'];
+    if(!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['confirm_password']) && !empty($_POST['name'])) {
 
-    $run_login = mysqli_query($con, "SELECT * from users where password='$password' AND email='$email'");
+       $ip = get_ip();
+       $name = $_POST['name'];
+       $email = trim($_POST['email']);
+       $password = trim($_POST['password']);
+       $hash_password = md5($password);
+       $confirm_password = trim($_POST['confirm_password']);
+       
+       $image = $_FILES['image'] ['name'];
+       $image_tmp = $_FILES['image'] ['tmp_name'];
+       $country = $_POST['country'];
+       $city = $_POST['city'];
+       $contact = $_POST['contact'];
+       $address = $_POST['address'];
 
-    $check_login = mysqli_num_rows($run_login);
+       $check_exist = mysqli_query($con, "SELECT * from users where email='$email'");
 
-    if($check_login == 0) {
-        echo "<script>alert('Password atau email yang anda masukan salah, Coba Lagi')</script>";
-        exit();
+       $email_count = mysqli_num_rows($check_exist);
+
+       $row_register = mysqli_fetch_array($check_exist);
+
+       if($email_count > 0) {
+           echo "<script> alert('Email $email sudah terdafar')</script>";
+       }elseif($password != $confirm_password) {
+           echo "<script> alert('Password anda tidak sama!')</script>";
+       }elseif($row_register['email'] != $email && $password == $confirm_password) {
+           
+            move_uploaded_file($image_tmp, "customer/customer_image/$image");
+
+            $run_insert = mysqli_query($con, "insert into users (ip_address,name,email,password,country,city,contact,user_address,image) values ('$ip','$name','$email','$hash_password','$country','$city','$contact','$address','$image')");
+
+       }
+
     }
-
-    $ip = get_ip();
-
-    $run_chart = mysqli_query($con, "SELECT * from cart where ip_address='$ip'");
-
-    $check_cart = mysqli_num_rows($run_chart);
-
-    if($check_login > 0  AND $check_cart == 0){
-
-        $_SESSION['email'] = $email;
-
-        echo "<script>alert('Anda berhasil Login')</script>";
-        echo "<script>window.open('customer/my_account.php', '_self')</script>";
-    } else {
-        $_SESSION['email'] = $email;
-
-        echo "<script>alert('Anda berhasil Login')</script>";
-        echo "<script>window.open('checkout.php', '_self')</script>";        
-
-    }
-
 }
+
+    
 
 ?>
 
