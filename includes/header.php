@@ -14,6 +14,22 @@ include ("includes/db.php");
 
     <link rel="stylesheet" href="styles/style.css" media="all">
     <script src="js/jquery.js"></script>
+
+<style>
+#profile img {
+    width: 27px;
+    height: 27px;
+    position: relative;
+    top : 13px;
+    left: -20px;
+    border-radius: 50%;
+}
+
+#profile ul {
+    decoration : none;
+}
+</style>
+
 </head>
 <body>
 <!--  Main Container -->
@@ -53,13 +69,56 @@ include ("includes/db.php");
                     </li>
                 </ul>
             </div>
+
+            <?php if(!isset($_SESSION['user_id'])) { ?>
             
             <div class="register_login">
                 <div class="login"><a href="index.php?action=login">Login</a></div>
                 <div class="register"><a href="register.php">Register</a></div>
             </div>
 
+            <?php }else {?>
+
+
+                <?php
+                
+                $select_user = mysqli_query($con, "SELECT * from users where id='$_SESSION[user_id]'");
+                $data_user = mysqli_fetch_array($select_user);
+                
+                ?>
+
+                <div id="profile">
+
+                <ul>
+                    <li class="dropdown_header">
+
+                        <a href="">
+                            <?php  if($data_user['image'] != '') { ?>
+
+                            <span><img src="customer/customer_image/<?php echo $data_user['image']; ?>" alt=""></span>
+
+                            <?php }else { ?>
+
+                            <span><img src="images/git.png" alt=""></span>
+
+                            <?php } ?>
+                        </a>
+
+                        <ul class="dropdown_menu_header">
+                            <li><a href="customer/my_account.php"> Account Setting</a></li>
+                            <li><a href="customer/logout.php"> Logout</a></li>
+                        </ul>
+
+                    </li>
+                </ul>
+
+                </div>
+
+            <?php } ?>
+
         </div><!--Header Wrapper-->
+
+
 
         <div class="menubar">
             <ul id="menu">
