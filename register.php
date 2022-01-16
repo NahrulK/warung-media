@@ -38,17 +38,7 @@
 <?php
 include ('includes/header.php');
 ?>
-        <div class="menubar">
-            <ul id="menu">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="all_products.php">All Services</a></li>
-                <li><a href="customer/my_account.php">My Account</a></li>
-                <li><a href="cart.php">Shopping Cart</a></li>
-                <li><a href="contact.php">Contact Us</a></li>
-                <li><a href="logout.php">Logout</a></li>
-            </ul>
-        </div>
-
+        
         <div class="content_wrapper">
 
         <script>
@@ -91,22 +81,22 @@ include ('includes/header.php');
 
     <tr>
         <td width="15%"><b>Name :</b></td>
-        <td colspan="3"><input type="text" name="name" placeholder="Name here.."></td>
+        <td colspan="3"><input type="text" name="name" required placeholder="Name here.."></td>
     </tr>
     
     <tr>
         <td width="15%"><b>Email :</b></td>
-        <td colspan="3"><input type="text" name="email" placeholder="E-mail"></td>
+        <td colspan="3"><input type="text" name="email" required placeholder="E-mail"></td>
     </tr>
 
     <tr>
         <td width="15%"><b>Password :</b></td>
-        <td colspan="3"><input type="password" name="password" placeholder="Password" id="password_confirm1"></td>
+        <td colspan="3"><input type="password" name="password" required placeholder="Password" id="password_confirm1"></td>
     </tr>
 
     <tr>
         <td width="15%"><b>Confirm Password :</b></td>
-        <td colspan="3"><input type="password" name="confirm_password" placeholder="Confirm Password" id="password_confirm2">
+        <td colspan="3"><input type="password" name="confirm_password" required placeholder="Confirm Password" id="password_confirm2">
             <p id="status_for_confirm_password">
 
             </p> <!--Menampilkan Validasi Password-->
@@ -127,17 +117,17 @@ include ('includes/header.php');
 
     <tr>
         <td width="15%"><b>City :</b></td>
-        <td colspan="3"><input type="text" name="city" placeholder="Masukan Kota"></td>
+        <td colspan="3"><input type="text" name="city" required placeholder="Masukan Kota"></td>
     </tr>
 
     <tr>
         <td width="15%"><b>Contact:</b></td>
-        <td colspan="3"><input type="text" name="contact" placeholder="Contact"></td>
+        <td colspan="3"><input type="text" name="contact" required placeholder="Contact"></td>
     </tr>
 
     <tr>
         <td width="15%"><b>Address: </b></td>
-        <td colspan="3"><input type="text" name="address" placeholder="Masukan Alamat.."></td>
+        <td colspan="3"><input type="text" name="address" required placeholder="Masukan Alamat.."></td>
     </tr>
 
 
@@ -176,11 +166,13 @@ if(isset($_POST['register'])){
        $contact = $_POST['contact'];
        $address = $_POST['address'];
 
-       $check_exist = mysqli_query($con, "SELECT * from users where email='$email'");
+    //    $check_exist = mysqli_query($con, "SELECT * from users where email='$email'");
 
-       $email_count = mysqli_num_rows($check_exist);
+       $check_data_email = mysqli_query($con, "SELECT * from users where email='$email'");
 
-       $row_register = mysqli_fetch_array($check_exist);
+       $email_count = mysqli_num_rows($check_data_email);
+
+       $row_register = mysqli_fetch_array($check_data_email);
 
        if($email_count > 0) {
            echo "<script> alert('Email $email sudah terdafar')</script>";
@@ -192,6 +184,29 @@ if(isset($_POST['register'])){
 
             $run_insert = mysqli_query($con, "insert into users (ip_address,name,email,password,country,city,contact,user_address,image) values ('$ip','$name','$email','$hash_password','$country','$city','$contact','$address','$image')");
 
+       }
+
+       if ($run_insert) {
+           $sel_user = mysqli_query($con, "SELECT * from users where email='$email'");
+           $row_user = mysqli_fetch_array($sel_user);
+
+           $_SESSION['user_id'] = $row_user['id'];
+           $_SESSION['role'] = $row_user['role'];
+       }
+
+       $run_chart = mysqli_query($con, "SELECT * from cart where ip_address='$ip'");
+       $check_chart = mysqli_num_rows($run_chart);
+
+       if($check_chart == 0) {
+           $_SESSION['email'] = $email;
+
+           echo "<script style='color=green;'>alert('Akun berhasil dibuat')</script>";
+           echo "<script> window.open('customer/my_account.php', '_self') </script>";
+       } else {
+            $_SESSION['email'] = $email;
+
+           echo "<script style='color=green;'>alert('Akun berhasil dibuat')</script>";
+           echo "<script> window.open('checkout.php', '_self') </script>";
        }
 
     }
