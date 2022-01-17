@@ -20,14 +20,51 @@ include ("includes/db.php");
     width: 27px;
     height: 27px;
     position: relative;
-    top : 13px;
+    /* top : 13px; */
     left: -20px;
     border-radius: 50%;
 }
 
 #profile ul {
     decoration : none;
+    list-style: none;
+    position: relative;
 }
+
+#profile ul a {
+    text-decoration: none;
+    color: #000;
+    line-height: 35px;
+}
+
+#profile ul a:hover {
+    text-decoration : underline;
+}
+
+#profile ul li ul {
+    position: absolute;
+    top: 40px;
+    right: 1px;
+    white-space: nowrap;
+    background: #fff;
+    width: auto;
+    z-index: 11;
+    display: none;
+}
+
+#profile ul li ul li a {
+    padding : 2px 25px 2px 15px;
+}
+
+#profile {
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    position: relative;
+    top: 15px;
+    margin-left: 35px;
+}
+
 </style>
 
 </head>
@@ -105,8 +142,8 @@ include ("includes/db.php");
                         </a>
 
                         <ul class="dropdown_menu_header">
-                            <li><a href="customer/my_account.php"> Account Setting</a></li>
-                            <li><a href="customer/logout.php"> Logout</a></li>
+                            <li><a href="my_account.php"> Account Setting</a></li>
+                            <li><a href="logout.php"> Logout</a></li>
                         </ul>
 
                     </li>
@@ -124,9 +161,11 @@ include ("includes/db.php");
             <ul id="menu">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="all_products.php">All Services</a></li>
-                <li><a href="customer/my_account.php">My Account</a></li>
+                <li><a href="my_account.php">My Account</a></li>
                 <li><a href="cart.php">Shopping Cart</a></li>
                 <li><a href="contact.php">Contact Us</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
-        </div>
+        </div> <!-- Menu bar -->
+
+<?php include("js/drop_down_menu.php"); ?>   

@@ -13,8 +13,8 @@ include ('includes/header.php');
                     include('payment.php');
                 }
 
-                echo $_SESSION['user_id'];
-                echo $_SESSION['role'];
+                // echo $_SESSION['user_id'];
+                // echo $_SESSION['role'];
                 
                 ?>
                               

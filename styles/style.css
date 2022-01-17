@@ -101,7 +101,7 @@ video {
     width: 1000px;
     height: auto;
     margin: auto;
-    background-color: #dfdfdf;
+    background-color: #fff;
 }
 
 .header_wrapper {
@@ -324,7 +324,7 @@ video {
 .content_wrapper {
     width: 1000px;
     margin: auto;
-    background: rgb(255, 102, 1);
+    /* background: #a0a0a0; */
 }
 
 #content_area {
